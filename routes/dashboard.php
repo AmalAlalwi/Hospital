@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\SectionController;
+use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,12 +36,15 @@ Route::group(
     //################################ end dashboard admin #####################################
 
     //-----------------------------------------------------------------------------------------------
-    Route::middleware(['auth:admin'])->group(function () {
+    Route::middleware(['auth:admin'])->group(callback: function () {
         //############################# sections route ##########################################
         Route::resource('sections', SectionController::class);
         //############################# end sections route ######################################
 
 
+        //############################# doctors route ##########################################
+        Route::resource('doctors', DoctorController::class);
+        //############################# end doctors route ######################################
 
     });
 

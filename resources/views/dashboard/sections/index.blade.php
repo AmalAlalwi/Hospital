@@ -13,7 +13,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Empty</span>
+							<h4 class="content-title mb-0 my-auto">{{trans('dashboard/main_sidebar_trans.View_All')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
 						</div>
 					</div>
 					<div class="d-flex my-xl-auto right-content">
@@ -45,16 +45,16 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
+    @include('dashboard.messages_alert')
 				<!-- row -->
-
                     <div class="row row-sm">
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header pb-0">
                                     <div class="d-flex justify-content-between">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                        Launch demo modal
-                                    </button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
+                                            {{trans('dashboard/sections_trans.add_sections')}}
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -62,24 +62,27 @@
                                         <table class="table text-md-nowrap" id="example1">
                                             <thead>
                                             <tr>
-                                                <th class="wd-15p border-bottom-0">{{trans('dashboard/section_trans.Id')}}</th>
-                                                <th class="wd-15p border-bottom-0">{{trans('dashboard/section_trans.Name')}}</th>
-                                                <th class="wd-10p border-bottom-0">{{trans('dashboard/section_trans.Start_Date')}}</th>
-                                                <th class="wd-15p border-bottom-0">{{trans('dashboard/section_trans.Operations')}}</th>
+                                                <th class="wd-15p border-bottom-0">{{trans('dashboard/sections_trans.Id')}}</th>
+                                                <th class="wd-15p border-bottom-0">{{trans('dashboard/sections_trans.Name')}}</th>
+                                                <th class="wd-10p border-bottom-0">{{trans('dashboard/sections_trans.Start_Date')}}</th>
+                                                <th class="wd-15p border-bottom-0">{{trans('dashboard/sections_trans.Operations')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($sections as $section)
                                                 <tr>
-                                                    <td>1</td>
+                                                    <td>{{$loop->iteration}}</td>
                                                     <td>{{$section->name}}</td>
-                                                    <td>{{$section->created_at}}</td>
-                                                    <td></td>
+                                                    <td>{{$section->created_at->diffForHumans()}}</td>
+                                                    <td>
+                                                        <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
+                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>
+                                                    </td>
                                                 </tr>
+                                                @include('dashboard.sections.edit')
+                                                @include('dashboard.sections.delete')
+
                                             @endforeach
-
-
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -91,10 +94,7 @@
                     </div>
 
 				<!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+
 @endsection
 @section('js')
     <!-- Internal Data tables -->
@@ -116,4 +116,8 @@
     <script src="{{URL::asset('dashboard/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
     <!--Internal  Datatable js -->
     <script src="{{URL::asset('dashboard/js/table-data.js')}}"></script>
+
+    <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
+
 @endsection

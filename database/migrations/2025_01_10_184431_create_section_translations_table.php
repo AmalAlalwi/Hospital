@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('section_translations', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('locale')->index();
             // Foreign key to the main model
             $table->unique(['section_id', 'locale']);
-            $table->foreignId('section_id')->constrained();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             // Actual fields you want to translate
             $table->string('name');
+            $table->timestamps();
         });
     }
 
