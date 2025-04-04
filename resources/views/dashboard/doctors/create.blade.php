@@ -119,16 +119,9 @@
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
                                     <select multiple="multiple" class="testselect2" name="appointments[]">
                                         <option selected name="appointments[]" value="" selected disabled>-- حدد المواعيد --</option>
-                                       {{-- @foreach($appointments as $appointment)
+                                        @foreach($appointments as $appointment)
                                             <option value="{{$appointment->id}}">{{$appointment->name}}</option>
-                                        @endforeach--}}
-                                        <option value="1">Saturday</option>
-                                        <option value="2">Sunday</option>
-                                        <option value="3">Monday</option>
-                                        <option value="4">Tuesday</option>
-                                        <option value="5">Wednesday</option>
-                                        <option value="6">Thursday</option>
-                                        <option value="7">Friday</option>
+                                        @endforeach
                                     </select>
 
                                 </div>

@@ -42,8 +42,8 @@
                             <tr>
                                 <th>#</th>
                                 <th><input name="select_all"  id="example-select-all"  type="checkbox"/></th>
-                                <th>{{trans('doctors.name')}}</th>
                                 <th>{{trans('doctors.img')}}</th>
+                                <th>{{trans('doctors.name')}}</th>
                                 <th>{{trans('doctors.email')}}</th>
                                 <th>{{trans('doctors.section')}}</th>
                                 <th>{{trans('doctors.phone')}}</th>
@@ -60,17 +60,17 @@
                                     <td>
                                         <input type="checkbox" name="delete_select" value="{{$doctor->id}}" class="delete_select">
                                     </td>
-                                    <td>{{ $doctor->name }}</td>
                                     <td>
                                         @if($doctor->image)
                                             <img src="{{asset('dashboard/img/doctors/'.$doctor->image->filename)}}"
                                                  height="50px" width="50px" alt="">
 
                                         @else
-                                            <img src="{{asset('dashboard/img/brand/favicon.png')}}" height="50px"
+                                            <img src="{{asset('dashboard/img/DefaultDoctor.jfif')}}" height="50px"
                                                  width="50px" alt="">
                                         @endif
                                     </td>
+                                    <td>{{ $doctor->name }}</td>
                                     <td>{{ $doctor->email }}</td>
                                     <td>{{ $doctor->section->name}}</td>
                                     <td>{{ $doctor->phone}}</td>

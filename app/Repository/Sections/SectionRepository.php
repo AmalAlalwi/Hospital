@@ -17,6 +17,7 @@ public function store($request)
 
     $validator= Validator::make($request->all(), [
        'name' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
     ]);
     Section::create($validator->validated());
     session()->flash('add');
@@ -25,6 +26,7 @@ public function store($request)
 public function update($request){
     $validator= Validator::make($request->all(), [
         'name' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
     ]);
     $section=Section::findOrFail($request->id);
     $section->update($validator->validated());

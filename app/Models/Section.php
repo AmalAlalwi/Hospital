@@ -12,8 +12,8 @@ class Section extends Model
     use HasFactory;
     use Translatable; // 2. To add translation methods
     // 3. To define which attributes needs to be translated
-    protected $fillable = ['name', 'created_at', 'updated_at'];
-    public $translatedAttributes = ['name'];
+    protected $fillable = ['name','description', 'created_at', 'updated_at'];
+    public $translatedAttributes = ['name','description'];
     public function doctors(){
         return $this->hasMany(Doctor::class);
     }

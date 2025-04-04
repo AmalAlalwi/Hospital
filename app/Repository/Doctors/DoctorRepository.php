@@ -1,6 +1,7 @@
 <?php
 namespace App\Repository\Doctors;
 use App\Interfaces\Doctors\DoctorRepositoryInterface;
+use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Section;
 use App\Traits\UploadFile;
@@ -18,7 +19,8 @@ class DoctorRepository implements DoctorRepositoryInterface
     }
     public function create(){
         $sections=Section::all();
-        return view('dashboard.doctors.create', compact('sections'));
+        $appointments=Appointment::all();
+        return view('dashboard.doctors.create', compact('sections','appointments'));
     }
     public function store($request)
     {
@@ -32,7 +34,7 @@ class DoctorRepository implements DoctorRepositoryInterface
             'appointments' => 'required',
             'price' => 'required|integer',
             'section_id' => 'required|integer|exists:sections,id',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
@@ -68,9 +70,11 @@ class DoctorRepository implements DoctorRepositoryInterface
         return redirect()->route('sections.index');
     }
     public function destroy($request){
-        $section=Section::findOrFail($request->id);
-        $section->delete();
-        session()->flash('delete');
-        return redirect()->route('sections.index');
+        if($request->page_id==1){
+
+        }
+        else {
+
+        }
     }
 }

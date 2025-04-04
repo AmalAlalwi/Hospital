@@ -64,6 +64,7 @@
                                             <tr>
                                                 <th class="wd-15p border-bottom-0">{{trans('dashboard/sections_trans.Id')}}</th>
                                                 <th class="wd-15p border-bottom-0">{{trans('dashboard/sections_trans.Name')}}</th>
+                                                <th class="wd-15p border-bottom-0">{{trans('dashboard/sections_trans.Description')}}</th>
                                                 <th class="wd-10p border-bottom-0">{{trans('dashboard/sections_trans.Start_Date')}}</th>
                                                 <th class="wd-15p border-bottom-0">{{trans('dashboard/sections_trans.Operations')}}</th>
                                             </tr>
@@ -73,6 +74,7 @@
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{$section->name}}</td>
+                                                    <td>{{ Str::limit($section->description,50)}}</td>
                                                     <td>{{$section->created_at->diffForHumans()}}</td>
                                                     <td>
                                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
